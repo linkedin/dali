@@ -1,0 +1,60 @@
+// Copyright 2021 LinkedIn Corporation. All rights reserved.
+// Licensed under the BSD-2 Clause license.
+// See LICENSE in the project root for license information.
+
+plugins {
+  id "com.diffplug.spotless" version "5.8.2"
+}
+
+configurations {
+  provided
+}
+
+allprojects {
+  group = "com.linkedin.dali"
+  apply plugin: "com.diffplug.spotless"
+
+  repositories {
+    mavenCentral()
+    maven {
+      url 'https://linkedin.bintray.com/maven/'
+    }
+  }
+
+  spotless {
+    ratchetFrom 'origin/master'
+    groovyGradle {
+      target '**/*.gradle'
+      endWithNewline()
+      greclipse().configFile("${rootDir}/gradle/spotless/codestyle-eclipse.xml")
+    }
+    format 'markdown', {
+      target '**/*.md'
+      targetExclude 'docs/release-notes.md'
+      endWithNewline()
+      // Disabling Prettier since it causes TravisCI to barf
+      // prettier()
+    }
+  }
+}
+
+subprojects {
+  plugins.withType(JavaPlugin) {
+    dependencies {
+      testCompile deps.'testing'
+    }
+    test {
+      useTestNG()
+    }
+    spotless {
+      java {
+        importOrder('java', 'javax', 'com', 'org', 'com.linkedin.coral', '\\#')
+        removeUnusedImports()
+        eclipse().configFile("${rootDir}/gradle/spotless/codestyle-eclipse.xml")
+        licenseHeaderFile file("${rootDir}/gradle/license/LICENSE_HEADER")
+      }
+    }
+  }
+
+  apply from: "${rootDir}/gradle/dependencies.gradle"
+}
