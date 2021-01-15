@@ -1,0 +1,20 @@
+#+TITLE: README
+
+* How to Build
+
+Clone the repository:
+
+#+begin_example
+git clone https://github.com/linkedin/coral.git
+#+end_example
+
+Build:
+
+#+begin_example
+./gradlew build
+#+end_example
+
+* Contributing
+
+The project is under active development and we welcome contributions of different forms.
+Please see the [Contribution Agreement](CONTRIBUTING.md).
