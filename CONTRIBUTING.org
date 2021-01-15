@@ -1,5 +1,3 @@
-#+TITLE: CONTRIBUTING
-
 * Contribution Agreement
 
 As a contributor, you represent that the code you submit is your

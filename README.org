@@ -1,5 +1,3 @@
-#+TITLE: README
-
 * How to Build
 
 Clone the repository:
@@ -17,4 +15,4 @@ Build:
 * Contributing
 
 The project is under active development and we welcome contributions of different forms.
-Please see the [Contribution Agreement](CONTRIBUTING.md).
+Please see the [[file:CONTRIBUTING.org][Contribution Agreement]].
